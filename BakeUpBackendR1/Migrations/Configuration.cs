@@ -53,7 +53,7 @@ namespace BakeUpBackendR1.Migrations
                     foreach (var sysPar in sysPars)
                     {
                         db.SysPars.AddOrUpdate(sysPar);
-                    }
+                    } 
                     foreach (var ing in ingredienti)
                     {
                         db.Ingredienti.AddOrUpdate(ing);
