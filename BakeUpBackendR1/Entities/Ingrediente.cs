@@ -7,6 +7,7 @@ namespace BakeUpBackendR1.Entities
 {
     public class Ingrediente:ValidEntity
     {
+        public string Codice { get; set; }
         public string NomeIngrediente { get; set; }
         public  float Kcal { get; set; }
         public float KJoule { get; set; }

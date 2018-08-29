@@ -7,8 +7,8 @@ namespace BakeUpBackendR1.Entities
 {
     public class IngredienteRicetta:EntityBase
     {
-        public string CodIngrediente { get; set; }
-        public float Quantità { get; set; }
+        public string Codice { get; set; }
+        public float Quantita { get; set; }
         public string Um { get; set; }
     }
 }
