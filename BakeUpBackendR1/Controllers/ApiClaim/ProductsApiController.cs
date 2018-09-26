@@ -17,16 +17,62 @@ namespace BakeUpBackendR1.Controllers.ApiClaim
             return new string[] { "value1", "value2" };
         }
 
-        private string GetProductId(int id)
+        private string GetProducts(int? id=null)
         {
-            return $"{ComposeBaseUrl()}Products?where=id={id}&strip_description=1";
+            if(id==null)
+                return $"{ComposeBaseUrl()}Products";
+            else
+                return $"{ComposeBaseUrl()}Products?where=id={id}&strip_description=1";
         }
+        private string GetCategories(int? id=null)
+        {
+            if(id==null)
+                return $"{ComposeBaseUrl()}Categories";
+            else
+                return $"{ComposeBaseUrl()}Categories?where=id={id}&strip_description=1";
+        }
+        private string GetChildCategories(int parentId)
+        {
+                return $"{ComposeBaseUrl()}Categories?where=parent_id={parentId}";
+        }
+        private string GetProductsInCat(int catId)
+        {
+            return $"{ComposeBaseUrl()}Products?where=category_id={catId}";
+        }
+
         // GET api/<controller>/5
-        public async Task<ProductModel> GetAsync(int id)
+        [Route("apiclaim/productsapi/products")]
+        public async Task<IEnumerable<ProductModel>> GetProductsAsync()
+        {
+            var res = await CallClaimAsync<ProductModel>(GetProducts());
+            return res;
+        }
+        [Route("apiclaim/productsapi/product/{id}")]
+        public async Task<ProductModel> GetProductAsync(int id)
+        {
+            var res= await CallClaimAsync<ProductModel>(GetProducts(id));
+            return res.FirstOrDefault();
+        }
+
+        //[Route("apiclaim/productsapi/categories")]
+        public async Task<IEnumerable<CategoryModel>> GetChildCategoriesAsync(int parentId)
+        {
+            var res = await CallClaimAsync<CategoryModel>(GetChildCategories(parentId));
+            return res;
+        }
+        [Route("apiclaim/productsapi/categories")]
+        public async Task<IEnumerable<CategoryModel>> GetCategoriesAsync()
         {
 
-            var res= await CallClaimAsync<ProductModel>(GetProductId(28));
+            var res = await CallClaimAsync<CategoryModel>(GetCategories());
             return res;
+        }
+        [Route("apiclaim/productsapi/categories/{id}")]
+        public async Task<CategoryModel> GetCategoryAsync(int id)
+        {
+
+            var res = await CallClaimAsync<CategoryModel>(GetCategories(id));
+            return res.FirstOrDefault();
         }
 
         // POST api/<controller>

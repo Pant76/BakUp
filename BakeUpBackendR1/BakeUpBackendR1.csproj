@@ -228,6 +228,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Claim\BaseModel.cs" />
+    <Compile Include="Models\Claim\CategoryModel.cs" />
+    <Compile Include="Models\Claim\DescriptableModel.cs" />
     <Compile Include="Models\Claim\Description.cs" />
     <Compile Include="Models\Claim\ProductModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

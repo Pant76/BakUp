@@ -25,7 +25,7 @@ namespace BakeUpBackendR1.Controllers.ApiClaim
         }
         
 
-        internal async System.Threading.Tasks.Task<T> CallClaimAsync<T>(string apiUrl)
+        internal async System.Threading.Tasks.Task<IEnumerable<T>> CallClaimAsync<T>(string apiUrl)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Token", Token);
@@ -36,16 +36,15 @@ namespace BakeUpBackendR1.Controllers.ApiClaim
             {
                 var res=  response.Content.ReadAsStringAsync().Result;
 
-                var r = JsonConvert.DeserializeObject<List<T>>(res);
-                //List <T> p = await response.Content.ReadAsAsync<List<T>>();
-                return r.FirstOrDefault();
+                var r = JsonConvert.DeserializeObject<IEnumerable<T>>(res);
+                return r;
             }
             else
             {
                 var r = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(r);
             }
-            return default(T);
+            return default(IEnumerable<T>);
         }
     }
 }

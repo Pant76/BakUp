@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BakeUpBackendR1.Models.Claim
 {
-    public class ProductModel: DescriptableModel
+    public class CategoryModel:DescriptableModel
     {
     }
 }

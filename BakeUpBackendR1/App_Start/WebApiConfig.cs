@@ -21,7 +21,7 @@ namespace BakeUpBackendR1
             );
             config.Routes.MapHttpRoute(
             name: "ClaimApi",
-            routeTemplate: "apiClaim/{controller}/{id}",
+            routeTemplate: "apiClaim/{controller}/{action}/{id}",
             defaults: new { id = RouteParameter.Optional }
         );
         }
